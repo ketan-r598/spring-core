@@ -6,10 +6,12 @@ import org.springframework.beans.factory.annotation.Lookup;
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;
+import java.util.concurrent.atomic.AtomicInteger;
 
 @Service
 public abstract class LibraryServiceSolution3 {
     private final BookRepository bookRepository;
+    private final AtomicInteger totalCount = new AtomicInteger(0);
 
     public LibraryServiceSolution3(BookRepository bookRepository) {
         this.bookRepository = bookRepository;
@@ -21,11 +23,10 @@ public abstract class LibraryServiceSolution3 {
     public void checkoutBook(String userEmail, String isbn) {
         NotificationService service = getNotificationService(); // Fresh instance
         service.sentNotification(new Notification(UUID.randomUUID().toString(), "Book "+isbn+" checked out", userEmail));
+        totalCount.incrementAndGet();
     }
 
     public int getNotificationCount() {
-        // if(service == null) service = notificationService.getObject();
-        NotificationService service = getNotificationService();
-        return service.getSentNotifications().size();
+        return totalCount.get();
     }
 }

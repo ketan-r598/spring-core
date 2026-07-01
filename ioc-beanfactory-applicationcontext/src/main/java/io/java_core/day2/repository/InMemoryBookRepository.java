@@ -1,12 +1,11 @@
 package io.java_core.day2.repository;
 
 import io.java_core.day1.model.Book;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Component
+@Repository
 public class InMemoryBookRepository implements BookRepository {
     @Override
     public List<Book> findAll() {

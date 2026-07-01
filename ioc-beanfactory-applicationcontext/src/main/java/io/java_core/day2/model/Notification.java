@@ -5,10 +5,10 @@ public class Notification {
     private String message;
     private String recepient;
 
-    public Notification(String id, String message, String recipient) {
+    public Notification(String id, String message, String recepient) {
         this.id = id;
         this.message = message;
-        this.recepient = recipient;
+        this.recepient = recepient;
     }
 
     public String getMessage() {

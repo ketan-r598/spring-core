@@ -6,12 +6,13 @@ import org.springframework.beans.factory.ObjectFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;
+import java.util.concurrent.atomic.AtomicInteger;
 
 @Service
 public class LibraryServiceSolution1 {
     private BookRepository bookRepository;
     private ObjectFactory<NotificationService> notificationService;
-//    private NotificationService service = null;
+    private final AtomicInteger totalCount = new AtomicInteger(0);
 
     public LibraryServiceSolution1 (BookRepository bookRepository, ObjectFactory<NotificationService> notificationService) {
         this.bookRepository = bookRepository;
@@ -19,15 +20,12 @@ public class LibraryServiceSolution1 {
     }
 
     public void checkoutBook(String userEmail, String isbn) {
-        // business logic
-        // if( service == null) service = notificationService.getObject();
         NotificationService service = notificationService.getObject();
         service.sentNotification(new Notification(UUID.randomUUID().toString(), "Book "+isbn+" checked out", userEmail));
+        totalCount.incrementAndGet();
     }
 
     public int getNotificationCount() {
-        // if(service == null) service = notificationService.getObject();
-        NotificationService service = notificationService.getObject();
-        return service.getSentNotifications().size();
+        return totalCount.get();
     }
 }

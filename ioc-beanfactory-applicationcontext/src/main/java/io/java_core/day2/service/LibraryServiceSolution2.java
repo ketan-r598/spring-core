@@ -6,11 +6,13 @@ import jakarta.inject.Provider;
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;
+import java.util.concurrent.atomic.AtomicInteger;
 
 @Service
 public class LibraryServiceSolution2 {
     private BookRepository bookRepository;
     private Provider<NotificationService> notificationService;
+    private AtomicInteger totalCount = new AtomicInteger(0);
 
     public LibraryServiceSolution2 (BookRepository bookRepository, Provider<NotificationService> notificationService) {
         this.bookRepository = bookRepository;
@@ -18,15 +20,12 @@ public class LibraryServiceSolution2 {
     }
 
     public void checkoutBook(String userEmail, String isbn) {
-        // business logic
-        // if( service == null) service = notificationService.getObject();
         NotificationService service = notificationService.get();
         service.sentNotification(new Notification(UUID.randomUUID().toString(), "Book "+isbn+" checked out", userEmail));
+        totalCount.incrementAndGet();
     }
 
     public int getNotificationCount() {
-        // if(service == null) service = notificationService.getObject();
-        NotificationService service = notificationService.get();
-        return service.getSentNotifications().size();
+        return totalCount.get();
     }
 }

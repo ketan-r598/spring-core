@@ -1,8 +1,6 @@
 package io.java_core;
 
 import io.java_core.day2.LibraryConfig;
-import io.java_core.day2.service.LibraryServiceSolution1;
-import io.java_core.day2.service.LibraryServiceSolution2;
 import io.java_core.day2.service.LibraryServiceSolution3;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
