@@ -1,4 +1,4 @@
-package io.java_core.day2.model;
+package io.java_core.day2_beans_scope.model;
 
 public class Notification {
     private String id;

@@ -1,7 +1,7 @@
-package io.java_core.day2.service;
+package io.java_core.day2_beans_scope.service;
 
-import io.java_core.day2.model.Notification;
-import io.java_core.day2.repository.BookRepository;
+import io.java_core.day2_beans_scope.model.Notification;
+import io.java_core.day2_beans_scope.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Lookup;
 import org.springframework.stereotype.Service;
 

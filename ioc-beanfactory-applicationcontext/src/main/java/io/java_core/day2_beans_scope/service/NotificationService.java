@@ -1,6 +1,6 @@
-package io.java_core.day2.service;
+package io.java_core.day2_beans_scope.service;
 
-import io.java_core.day2.model.Notification;
+import io.java_core.day2_beans_scope.model.Notification;
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
 import org.springframework.context.annotation.Scope;

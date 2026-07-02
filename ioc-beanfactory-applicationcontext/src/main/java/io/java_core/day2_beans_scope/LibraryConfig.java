@@ -1,4 +1,4 @@
-package io.java_core.day2;
+package io.java_core.day2_beans_scope;
 
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;

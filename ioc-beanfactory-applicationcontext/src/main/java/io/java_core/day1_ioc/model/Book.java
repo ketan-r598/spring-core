@@ -1,4 +1,4 @@
-package io.java_core.day1.model;
+package io.java_core.day1_ioc.model;
 
 public class Book {
     private String name;

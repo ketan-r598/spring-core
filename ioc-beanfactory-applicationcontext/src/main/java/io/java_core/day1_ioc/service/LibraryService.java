@@ -1,7 +1,7 @@
-package io.java_core.day1.service;
+package io.java_core.day1_ioc.service;
 
-import io.java_core.day1.model.Book;
-import io.java_core.day1.repository.BookRepository;
+import io.java_core.day1_ioc.model.Book;
+import io.java_core.day1_ioc.repository.BookRepository;
 import jakarta.annotation.PostConstruct;
 
 import java.util.List;

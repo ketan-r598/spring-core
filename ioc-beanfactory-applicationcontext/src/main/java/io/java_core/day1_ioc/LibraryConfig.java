@@ -1,9 +1,8 @@
-package io.java_core.day1;
+package io.java_core.day1_ioc;
 
-import io.java_core.day1.repository.BookRepository;
-import io.java_core.day1.repository.FakeBookRepository;
-import io.java_core.day1.repository.InMemoryBookRepository;
-import io.java_core.day1.service.LibraryService;
+import io.java_core.day1_ioc.repository.BookRepository;
+import io.java_core.day1_ioc.repository.InMemoryBookRepository;
+import io.java_core.day1_ioc.service.LibraryService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
