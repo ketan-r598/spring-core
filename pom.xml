@@ -13,6 +13,7 @@
   <url>http://www.example.com</url>
   <modules>
     <module>ioc-beanfactory-applicationcontext</module>
+      <module>mini-project-task-management-api</module>
   </modules>
 
   <properties>
