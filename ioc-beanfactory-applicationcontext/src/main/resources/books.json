@@ -1,0 +1,14 @@
+{
+  "books": [
+    {
+      "isbn": "978-0134685991",
+      "title": "Effective Java",
+      "author": "Joshua Bloch"
+    },
+    {
+      "isbn": "978-1617294945",
+      "title": "Java Persistence with Spring",
+      "author": "Catalin Tudose"
+    }
+  ]
+}

@@ -1,11 +1,7 @@
 package io.java_core;
 
-/**
- * Hello world!
- */
-public class App {
+public class AppDay4 {
     public static void main(String[] args) {
 
-
-            }
+    }
 }
