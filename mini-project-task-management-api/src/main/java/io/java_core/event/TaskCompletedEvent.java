@@ -11,4 +11,8 @@ public class TaskCompletedEvent extends ApplicationEvent {
         super(source);
         this.task = task;
     }
+
+    public Task getTask() {
+        return task;
+    }
 }

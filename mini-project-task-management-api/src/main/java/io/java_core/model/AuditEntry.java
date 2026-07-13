@@ -1,9 +1,14 @@
 package io.java_core.model;
 
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
+
 import java.time.Instant;
 import java.time.LocalTime;
 import java.util.UUID;
 
+@Component
+@Scope("prototype")
 public class AuditEntry {
 
     private final String instanceId;
@@ -11,7 +16,7 @@ public class AuditEntry {
 
     public AuditEntry() {
         instanceId = UUID.randomUUID().toString();
-        timestamp = Instant.from(LocalTime.now()).toString();
+        timestamp = LocalTime.now().toString();
     }
 
     public String getInstanceId() {

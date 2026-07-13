@@ -3,13 +3,15 @@ package io.java_core.infrastructure;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.lang.Nullable;
+import org.springframework.stereotype.Component;
 
+@Component
 public class TaskBeanPostProcessor implements BeanPostProcessor {
 
     @Nullable
     @Override
     public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
-        if(bean.getClass().getName().contains("respository")
+        if(bean.getClass().getName().contains("repository")
                 || bean.getClass().getName().contains("service")) {
             System.out.println("[BPP] - " + beanName + " is initializing...");
         }
@@ -19,7 +21,7 @@ public class TaskBeanPostProcessor implements BeanPostProcessor {
     @Nullable
     @Override
     public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
-        if(bean.getClass().getName().contains("respository")
+        if(bean.getClass().getName().contains("repository")
                 || bean.getClass().getName().contains("service")) {
             System.out.println("[BPP] - " + beanName + " is ready to use...");
         }

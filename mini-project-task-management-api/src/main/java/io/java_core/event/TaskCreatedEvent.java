@@ -10,4 +10,8 @@ public class TaskCreatedEvent extends ApplicationEvent {
         super(source);
         this.task = task;
     }
+
+    public Task getTask() {
+        return task;
+    }
 }
