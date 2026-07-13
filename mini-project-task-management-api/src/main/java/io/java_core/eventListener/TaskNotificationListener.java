@@ -20,7 +20,7 @@ public class TaskNotificationListener {
     public void onTaskCompleted(TaskCompletedEvent taskCompletedEvent) {
         System.out.println();
         System.out.println(" >>> TaskCompletedEvent is triggered...");
-        System.out.println(" >>> New Task Created " + taskCompletedEvent.getTask());
+        System.out.println(" >>> Task Completed " + taskCompletedEvent.getTask());
         System.out.println();
     }
 }

@@ -16,7 +16,7 @@ import java.util.UUID;
 
 
 @Service
-public class TaskService {
+public class TaskService implements IService {
 
     private final TaskRepository taskRepo;
     private final ApplicationEventPublisher eventPublisher;
@@ -34,34 +34,33 @@ public class TaskService {
 
     public Task createTask(String title, String description) {
 
-        if(taskRepo.findAll().size() > maxTaskLimit) {
+        if (taskRepo.findAll().size() >= maxTaskLimit) {
             throw new IllegalArgumentException("Task Limit Exceeded...");
         }
 
         Task savedTask = taskRepo.save(new Task(UUID.randomUUID().toString(), title, description, TaskStatus.PENDING));
 
-        if(savedTask != null) {
-            eventPublisher.publishEvent(new TaskCreatedEvent(this,savedTask));
 
-            System.out.println();
-            System.out.println(" [AUDIT] | Task Created | " + auditEntry.getObject() + " | [ " + savedTask.id() + " ]");
-            System.out.println();
+        eventPublisher.publishEvent(new TaskCreatedEvent(this, savedTask));
 
-            return savedTask;
-        }
+        System.out.println();
+        System.out.println(" [AUDIT] | Task Created | " + auditEntry.getObject() + " | [ " + savedTask.id() + " ]");
+        System.out.println();
 
-        return null;
+        return savedTask;
+
+
     }
 
     public Task completeTask(String id) {
         Task oldTask = taskRepo.findById(id)
-                                .orElseThrow(() -> new IllegalArgumentException("Invalid id..."));
+                .orElseThrow(() -> new IllegalArgumentException("Invalid id..."));
 
         taskRepo.deleteById(id);
         Task newTask = new Task(oldTask.id(), oldTask.title(), oldTask.description(), TaskStatus.COMPLETED);
         newTask = taskRepo.save(newTask);
 
-        eventPublisher.publishEvent(new TaskCompletedEvent(this,newTask));
+        eventPublisher.publishEvent(new TaskCompletedEvent(this, newTask));
 
         System.out.println();
         System.out.println(" [AUDIT] | Task Completed | " + auditEntry.getObject() + " | [ " + newTask.id() + " ]");
@@ -69,6 +68,7 @@ public class TaskService {
 
         return newTask;
     }
+
     public List<Task> getAllTasks() {
         return taskRepo.findAll();
     }

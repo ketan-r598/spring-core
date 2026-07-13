@@ -16,7 +16,7 @@ public class AuditEntry {
 
     public AuditEntry() {
         instanceId = UUID.randomUUID().toString();
-        timestamp = LocalTime.now().toString();
+        timestamp = Instant.now().toString();
     }
 
     public String getInstanceId() {

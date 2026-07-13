@@ -10,9 +10,10 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Repository;
 
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -61,7 +62,7 @@ public class FileTaskRepository implements TaskRepository {
 
         // Reading tasks from json file and populating the map.
         taskMap = new HashMap<>();
-        try (JsonParser parser = mapper.createParser(new FileReader(filePath))) {
+        try (JsonParser parser = mapper.createParser(Files.newBufferedReader(Path.of(filePath), StandardCharsets.UTF_8))) {
 
             if (parser.nextToken() != JsonToken.START_ARRAY) {
                 throw new IllegalStateException("Expected JSON array");
@@ -70,12 +71,9 @@ public class FileTaskRepository implements TaskRepository {
 
             while (parser.nextToken() == JsonToken.START_OBJECT) {
                 Task task = mapper.readValue(parser, Task.class);
-                System.out.println("Initializing the task with : " + task);
                 taskMap.put(task.id(), task);
             }
 
-            // After map is initialized...
-            System.out.println(taskMap);
         } catch (IOException exception) {
             System.out.println("oh, snap! Something went wrong... Creating an empty map" + exception.getMessage());
             taskMap = new HashMap<>();
@@ -91,7 +89,7 @@ public class FileTaskRepository implements TaskRepository {
         }
         try {
 
-            mapper.writeValue(new FileWriter(filePath), taskMap.values().stream().toList());
+            mapper.writeValue(Files.newBufferedWriter(Path.of(filePath), StandardCharsets.UTF_8), taskMap.values().stream().toList());
         } catch (IOException e) {
             System.out.println("Oh snap!, something went wrong..." + e.getMessage());
         }

@@ -21,12 +21,12 @@ public class InMemoryTaskRepository implements TaskRepository {
 
     @Override
     public List<Task> findAll() {
-        return taskRepo.values().stream().collect(Collectors.toUnmodifiableList());
+        return taskRepo.values().stream().toList();
     }
 
     @Override
     public Optional<Task> findById(String id) {
-        return Optional.ofNullable(taskRepo.getOrDefault(id,null));
+        return Optional.ofNullable(taskRepo.get(id));
     }
 
     @Override
