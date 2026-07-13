@@ -16,7 +16,7 @@ import java.util.UUID;
 
 
 @Service
-public class TaskService implements IService {
+public class TaskService {
 
     private final TaskRepository taskRepo;
     private final ApplicationEventPublisher eventPublisher;

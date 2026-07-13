@@ -77,6 +77,7 @@ public class FileTaskRepository implements TaskRepository {
         } catch (IOException exception) {
             System.out.println("oh, snap! Something went wrong... Creating an empty map" + exception.getMessage());
             taskMap = new HashMap<>();
+            exception.printStackTrace();
         }
     }
 
@@ -92,6 +93,7 @@ public class FileTaskRepository implements TaskRepository {
             mapper.writeValue(Files.newBufferedWriter(Path.of(filePath), StandardCharsets.UTF_8), taskMap.values().stream().toList());
         } catch (IOException e) {
             System.out.println("Oh snap!, something went wrong..." + e.getMessage());
+            e.printStackTrace();
         }
     }
 }
